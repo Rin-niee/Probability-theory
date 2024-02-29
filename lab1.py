@@ -14,6 +14,9 @@ def razmechpov(rr, rr1):
 def razmech(r, r1):
     hr = factor(r)/((factor(r-r1)))
     return hr
+def fpoln(Phi, sumph):
+    O = Phi*sumph
+    return O
 
 #задание 1 В урне 4 белых и 6 черных шаров. Из урны наудачу извлечены 2 шара. Найти вероятность того, что они разного цвета.
 
@@ -135,3 +138,89 @@ for i in range(len(C10)):
     PAH3 = (C10[i])/(C10[i-1])
 PA10 = (PAH1*PH1)+(PAH2*PH2)+(PAH3*PH3)
 print(PA10)
+
+#11
+
+n11 = int(input( "Введите количество путей, предоставленных туристу" ) )
+PH10 = [float(value) for value in input( "Введите вероятность выхода для каждого пути через пробел").split()]
+i10 = int(input("Вероятность выбора какой тропы нужно высчитать?"))-1
+Ph10 = 1 / (n11)
+sumPH10 = 0
+for i in range(len(PH10)):
+     sumPH10 = sumPH10 + PH10[i]
+print(PH10[i10])
+ph10A = fbayer(Ph10, PH10[i10], fpoln(Ph10, sumPH10))
+print(ph10A)
+
+# 12
+
+Phi111 = int(input("Введите процент количества деталей, производимых 1 цехом"))/100
+Phi112 = int(input("Введите процент количества деталей, производимых 2 цехом"))/100
+Pah111 = 1 - float(input("Введите вероятность брака 1 цеха"))
+Pah112 = 1 - float(input("Введите вероятность брака 2 цеха"))
+pa12 = (Pah111 * Phi111) + (Pah112 * Phi112)
+PhiA12 = fbayer(Phi111, Pah111, pa12)
+print(PhiA12)
+
+# 13
+
+r1 = int(input("Введите часть соотношения грузовых машин"))
+r2 = int(input("Введите часть соотношения легковых машин"))
+z1 = float(input("заправка грузовых"))
+z2 = float(input("заправка легковых"))
+Ph131 = r1/(r1+r2)
+Ph132 = r2/(r1+r2)
+Pa13 = r1*z1 + r2* z2
+PhA131 = fbayer(Ph131, z1, Pa13)
+print(PhA131)
+
+# 14
+
+
+Ph141 = float(input("Количество ламп с 1 завода"))
+Ph142 = float(input("Количество ламп с 2 завода"))
+Ph143 = 1- Ph141- Ph142
+PAh141 = float(input("Введите вероятность брака 1 цеха"))
+PAh142 = float(input("Введите вероятность брака 2 цеха"))
+PAh143 = float(input("Введите вероятность брака 3 цеха"))
+PA14 = Ph141*PAh141 + Ph142*PAh142 + Ph143*PAh143
+Pha141 = fbayer(Ph141, PAh141, PA14)
+Pha142 = fbayer(Ph142, PAh142, PA14)
+Pha143 = fbayer(Ph143, PAh143, PA14)
+print(Pha141, Pha142, Pha143)
+
+# 15
+
+PaH151 = 6/12
+PaH152 = 5/12
+PaH153 = 4/12
+Ph151 = sochet(3, 3) * sochet(4,2) / sochet(7,5)
+Ph152 = sochet(3,2) * sochet(4,3) / sochet(7,5)
+Ph153 = sochet(3,1) * sochet(4,4) / sochet(7,5)
+Pa15 = PaH151 * Ph151 + PaH152 * Ph152+ PaH153 * Ph153
+print(Pa15)
+
+# 16
+
+x = int(input("Введите количество банков"))
+x1 = int(input("Введите количество банков с нарушением"))
+x2 = int(input("Введите количество проверяемых банков"))
+p = float(input("Введите вероятность нарушения"))
+Ph160 = sochet(0, x1)* sochet(x-x1, x2)/ (x, x2)
+Ph161 = sochet(1, x1-1)* sochet(x-x1, x2-1)/ (x, x2)
+Ph162 = sochet(2, x1-2)* sochet(x-x1, x2-2)/ (x, x2)
+Ph163 = sochet(3, x1-3)* sochet(x-x1, x2-3)/ (x, x2)
+Pah160= 1-(1-p)^0
+Pah161= 1-(1-p)^1
+Pah162= 1-(1-p)^2
+Pah163= 1-(1-p)^3
+Pa16 = Ph160* Pah160 + Ph161* Pah161+ Ph162* Pah162+ Ph163* Pah163
+
+
+
+
+# 17
+
+P17 = [float(value) for value in input( "Введите вероятность выхода из строя через пробел").split()]
+Pn17 = (1-P17[0])*(1 - (P17[1] + P17[2] + P17[3] + P17[4]))
+print(Pn17)
