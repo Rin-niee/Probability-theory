@@ -1,30 +1,31 @@
-def factor(f):
-    if f == 0:
-        return 1
-    if f == 1:
-        return 1
-    else:
-        return factor(f-1)*f
+import math
+# def factor(f):
+#     if f == 0:
+#         return 1
+#     if f == 1:
+#         return 1
+#     else:
+#         return factor(f-1)*f
 
 def sochet(k, k1):
-    o = factor(k)/(factor(k1) * factor(k-k1))
+    o = math.factorial(k1)/(math.factorial(k) * math.factorial(k1-k))
     return o
     
-#1 yt hf,jnftn vhfpm!!!
+#1 t,fyysq rjl
 
 x = int(input("Введите выбранные виды"))
 p1= int(input("Введите количество видов"))
 p12= p1-x
-
-p = []
-x1 = 0
-print(x1)
-x12 = x
-while x1<x:
-    p0= (sochet(x1, x12)*sochet(x2, p12))/sochet(x, p1)
-    x1=x1+1
-    x12=x12-1
+p = [] #список, куда заносятся данные итоговые(x)
+x12 = x #выбранные виды
+p0=0
+for i in range(x+1):
+    p0 = sochet(i, x)*sochet(x12, p12)/sochet(x, p1)
     p.append(p0)
+    x12=x12-1
+    if x12<0:
+        break
+    
 print(p)
 
 #2  Радист вызывает корреспондента, причем каждый последующий вызов производится лишь в том случае, если предыдущий вызов не принят. 
@@ -32,14 +33,14 @@ print(p)
 # Составить закон распределения числа вызовов, если число вызовов не более 5.
 
 x2 = int(input("Введите количество вызовов"))
-p2= int(input("Введите вероять принятия вызова"))
+p2= float(input("Введите вероять принятия вызова"))
 p21 = 1-p2
 x22=0
 while x22<x2:
     t2 = p21**x22 * p2
     x22+=1
     
-    if x22=x2:
+    if x22==x2:
         t2 = p21**x22 * p2 * p21**x2
     print(t2)
 
@@ -49,12 +50,12 @@ while x22<x2:
 # Составить ряд распределения числа семестровых экзаменов, которые сдаст студент
 
 x3 = int(input("Введите количество экзаменов"))
-p31=int(input("Введите вероятность сдачи первого экзамена")) #0.7
-p32= int(input("Введите вероятность сдачи второго экзамена")) #0.9
+p31=float(input("Введите вероятность сдачи первого экзамена")) #0.7
+p32= float(input("Введите вероятность сдачи второго экзамена")) #0.9
 
 
 P30=(1-p31)*(1-p32) 
-P31=p31*(1-p32))+ (1-p31))* 0,9 
+P31=p31*((1-p32)+ (1-p31)) * 0.9 
 P32=p31*p32 
 print(P30, P31, P32)
 
@@ -68,7 +69,7 @@ print(P30, P31, P32)
 # высшего  качества  среди  купленных  трех  банок. 
 
 
-A - банка высшего качества 
+# A - банка высшего качества 
 
 H1 = int(input("введите количество банок с первого завода"))
 
@@ -84,9 +85,11 @@ haha=0
 aaa= Hehe
 p3 = []
 p31=0
-while haha < Hehe:
-    pe = sochet(p31, Hehe)*PA**haha * (1-PA)**aaa
+for i in range(Hehe):
+    pe = sochet(p31, Hehe)*PA**i * (1-PA)**aaa
     aaa-=1
     p31+=1
     p3.append(pe)
+    if p31<0:
+        break
 print(p3)
