@@ -28,13 +28,15 @@ print(p)
 x2 = int(input("Введите количество вызовов"))
 p2= float(input("Введите вероять принятия вызова"))
 p21 = 1-p2
-x22=0
+x22=1
 while x22<x2:
     t2 = p21**x22 * p2
     x22+=1
     
     if x22==x2:
-        t2 = p21**x22 * p2 * p21**x2
+        t2 = p21 **(x2-1)
+        print(t2)
+        break
     print(t2)
 
 
