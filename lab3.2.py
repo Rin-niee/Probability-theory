@@ -31,9 +31,9 @@ print("Решение: ", M)
 print("Формула Z = 2X+3Y")
 
 xi = [int(value) for value in input("Введите xi через пробел").split()]
-pxi = [int(value) for value in input("Введите Pi через пробел").split()]
+pxi = [float(value) for value in input("Введите Pi через пробел").split()]
 yi = [int(value) for value in input("Введите yi через пробел").split()]
-pyi = [int(value) for value in input("Введите Pi через пробел").split()]
+pyi = [float(value) for value in input("Введите Pi через пробел").split()]
 zij = []
 zij2 = []
 Pi=[]
@@ -43,16 +43,15 @@ for i in range(len(xi)):
         k1 = k**2
         zij.append(k)
         zij2.append(k1)
-        k3 = xi[i]*yi[j]
+        k3 = pxi[i]*pyi[j]
         Pi.append(k3)
 Mx=0
+print(Pi, zij, zij2)
 for i in range(len(zij)):
-    for j in range(len(Pi)):
-        Mx += zij*Pi
+    Mx = Mx + zij[i]*Pi[i]
 x=0
-for j in range(len(Pi)):
-    x+=Pi[i]**2
-
+for j in range(len(zij2)):
+    x = x + zij2[i]*Pi[i]
 Dx = x-Mx**2
 
 print("Математическое ожидание: ", Mx, "\nДисперсия: ", Dx)
